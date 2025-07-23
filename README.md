@@ -4,6 +4,7 @@ Projeto de uma API REST para gerenciar alunos e o fluxo de caixa de uma pequena 
 Parte da formação no Bootcamp Santander DIO 2025, exercício de Java/Springboot/Design patterns.
 
 🎴
+<img width="3840" height="1104" alt="Untitled diagram _ Mermaid Chart-2025-07-23-180604" src="https://github.com/user-attachments/assets/c804bd63-ca4e-4ce7-bcc0-d337301f4405" />
 
 ## ⚙ Funcionalidades
 
