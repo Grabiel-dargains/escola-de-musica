@@ -4,7 +4,86 @@ Projeto de uma API REST para gerenciar alunos e o fluxo de caixa de uma pequena 
 Parte da formação no Bootcamp Santander DIO 2025, exercício de Java/Springboot/Design patterns.
 
 🎴
-<img width="3840" height="1104" alt="Untitled diagram _ Mermaid Chart-2025-07-23-180604" src="https://github.com/user-attachments/assets/c804bd63-ca4e-4ce7-bcc0-d337301f4405" />
+```mermaid
+classDiagram
+    class AlunoController {
+        +criarAluno(AlunoDTO) : ResponseEntity~Aluno~
+        +listarAlunos() : List~Aluno~
+        +buscarAlunoPorId(Long) : ResponseEntity~Aluno~
+    }
+    class CaixaController {
+        +registrarPagamento(PagamentoDTO) : ResponseEntity~Mensalidade~
+        +registrarDespesa(DespesaDTO) : ResponseEntity~LancamentoCaixa~
+        +getSaldo() : ResponseEntity~SaldoDTO~
+    }
+    class CaixaService {
+        +registrarPagamento(PagamentoDTO) : Mensalidade
+        +registrarDespesa(DespesaDTO) : LancamentoCaixa
+        +verificarSaldo() : SaldoDTO
+    }
+    class AlunoRepository {
+        <<Repository>>
+    }
+    class MensalidadeRepository {
+        <<Repository>>
+        +findByAlunoAndMesAno(Aluno, YearMonth) : Optional~Mensalidade~
+    }
+    class LancamentoCaixaRepository {
+        <<Repository>>
+        +calcularSaldo() : BigDecimal
+    }
+    class Aluno {
+        <<Entity>>
+        -id: Long
+        -nome: String
+        -endereco: String
+        -instrumento: String
+        -matriculado: boolean
+    }
+    class Mensalidade {
+        <<Entity>>
+        -id: Long
+        -mesAno: YearMonth
+        -valorPago: BigDecimal
+        -dataPagamento: LocalDate
+        -status: StatusPagamento
+    }
+    class LancamentoCaixa {
+        <<Entity>>
+        -id: Long
+        -descricao: String
+        -valor: BigDecimal
+        -data: LocalDateTime
+        -tipo: TipoLancamento
+    }
+    class StatusPagamento {
+        <<Enum>>
+        PAGO
+        PENDENTE
+    }
+    class TipoLancamento {
+        <<Enum>>
+        ENTRADA
+        SAIDA
+    }
+    class AlunoDTO { <<DTO>> }
+    class PagamentoDTO { <<DTO>> }
+    class DespesaDTO { <<DTO>> }
+    class SaldoDTO { <<DTO>> }
+
+    AlunoController --> AlunoRepository
+    CaixaController --> CaixaService
+
+    CaixaService --> AlunoRepository
+    CaixaService --> MensalidadeRepository
+    CaixaService --> LancamentoCaixaRepository
+
+    Aluno "1" *-- "0..*" Mensalidade : possui
+    Mensalidade --> Aluno
+
+    Mensalidade --> StatusPagamento
+    LancamentoCaixa --> TipoLancamento
+```
 
 ## ⚙ Funcionalidades
 
