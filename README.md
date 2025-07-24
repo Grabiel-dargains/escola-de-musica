@@ -1,7 +1,7 @@
 # Sistema de Gestão para Escola de Música
 
 Projeto de uma API REST para gerenciar alunos e o fluxo de caixa de uma pequena escola de música.
-Parte da formação no Bootcamp Santander DIO 2025, exercício de Java/Springboot/Design patterns.
+Parte da formação no Bootcamp Santander DIO 2025, exercício de Java/Springboot/Design patterns e Deploy em Railway.
 
 🎴
 ```mermaid
@@ -97,7 +97,7 @@ classDiagram
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Java 21**
+* **Java 17**
 * **Spring Boot 3**
     * **Spring Web:** Para a construção de APIs REST.
     * **Spring Data JPA:** Para a persistência de dados.
@@ -107,6 +107,7 @@ classDiagram
 * **Maven:** Gerenciador de dependências e build.
 * **Lombok:** Para reduzir código boilerplate em classes de modelo.
 * **OpenAPI (Swagger):** Para documentação e teste interativo da API.
+* **Railway:** Para dar deploy na API.
 
 ---
 
